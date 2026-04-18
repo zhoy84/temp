@@ -3,6 +3,6 @@
     { "src": "AgentAI.html", "use": "@vercel/static" }
   ],
   "routes": [
-    { "src": "/(.*)", "dest": "/AgentAI.html" }
+    { "src": "/", "dest": "/AgentAI.html" }
   ]
 }
