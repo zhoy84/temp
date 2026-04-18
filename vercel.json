@@ -1,5 +1,8 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "/AgentAI.html" }
+    {
+      "source": "/",
+      "destination": "/AgentAI.html"
+    }
   ]
 }
