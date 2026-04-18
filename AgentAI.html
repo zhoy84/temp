@@ -75,6 +75,7 @@ body{
       object-fit:cover;
       object-position:center top;
       z-index:0;
+      transition:opacity 0.3s ease;
     }
     
     .hero-bg{
@@ -107,32 +108,6 @@ body{
       letter-spacing:-0.04em;
       position:relative;
       display:inline-block;
-    }
-    
-    /* Decorative lines around title */
-    .hero h1::before,
-    .hero h1::after{
-      content:'';
-      position:absolute;
-      width:80px;
-      height:2px;
-      background:linear-gradient(90deg,transparent,var(--neon-green),transparent);
-      animation:lineGlow 2s ease-in-out infinite;
-    }
-    .hero h1::before{
-      top:-20px;
-      left:50%;
-      transform:translateX(-50%);
-    }
-    .hero h1::after{
-      bottom:-15px;
-      left:50%;
-      transform:translateX(-50%);
-      animation-delay:0.5s;
-    }
-    @keyframes lineGlow{
-      0%,100%{opacity:0.3;width:60px;}
-      50%{opacity:1;width:120px;}
     }
     
     .hero h1{
@@ -610,7 +585,37 @@ body{
 
   <!-- Hero -->
   <section class="hero" id="home">
-    <video src="public/video-loading.mp4" class="hero-bg-img" autoplay loop muted playsinline></video>
+    <video src="public/video-loading.mp4" class="hero-bg-img" autoplay muted playsinline id="bgVideo1" poster="public/video-loading.png"></video>
+<video src="public/video-loading.mp4" class="hero-bg-img" style="opacity:0" autoplay muted playsinline id="bgVideo2" poster="public/video-loading.png"></video>
+<img src="public/video-loading.png" class="hero-bg-img" style="z-index:-1" alt=""/>
+<script>
+const v1=document.getElementById('bgVideo1');
+const v2=document.getElementById('bgVideo2');
+v1.addEventListener('ended',function(){
+  v2.style.transition='opacity 0.3s ease';
+  v2.style.opacity=1;
+  v2.currentTime=0;
+  v2.play();
+  setTimeout(()=>{
+    v1.style.transition='opacity 0.3s ease';
+    v1.style.opacity=0;
+    v1.currentTime=0;
+    v1.play();
+  },200);
+});
+v2.addEventListener('ended',function(){
+  v1.style.transition='opacity 0.3s ease';
+  v1.style.opacity=1;
+  v1.currentTime=0;
+  v1.play();
+  setTimeout(()=>{
+    v2.style.transition='opacity 0.3s ease';
+    v2.style.opacity=0;
+    v2.currentTime=0;
+    v2.play();
+  },200);
+});
+</script>
     <div class="hero-content">
       <h1 style="font-size:clamp(2.5rem,5vw,4.5rem);font-weight:900;line-height:1.1;margin-bottom:0.5rem;margin-top:10rem;color:rgba(255,255,255,0.8);text-shadow:0 4px 50px rgba(0,0,0,1);"><span>Building Trustworthy AI Autonomy</span></h1>
       <p style="font-size:clamp(0.8rem,1vw,1rem);color:rgba(255,255,255,0.8);max-width:600px;text-shadow:0 2px 15px rgba(0,0,0,0.9);">The next-generation AI infrastructure for the modular, scalable, and decentralized future.</p>
