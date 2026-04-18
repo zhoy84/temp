@@ -1,8 +1,5 @@
 {
-  "builds": [
-    { "src": "AgentAI.html", "use": "@vercel/static" }
-  ],
-  "routes": [
-    { "src": "/(.*)", "dest": "/AgentAI.html" }
+  "rewrites": [
+    { "source": "/", "destination": "/AgentAI.html" }
   ]
 }
